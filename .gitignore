@@ -17,7 +17,8 @@ benchmark.exe
 *.dylib
 
 # Diretório de build (caso seja criado no futuro)
-build/
+build/*
+!build/.gitkeep
 
 # Arquivos temporários
 *.tmp

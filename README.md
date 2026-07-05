@@ -36,6 +36,7 @@ O objetivo deste repositório não é servir como portfólio, mas como uma bibli
 ## Estrutura
 ```text
 benchmark-sort/
+├── build/
 ├── include/
 ├── src/
 ├── README.md
