@@ -1,0 +1,26 @@
+# ===========================
+# Benchmark Sort - .gitignore
+# ===========================
+
+#Executáveis gerados pela COMPILAÇÃO
+benchmark
+benchmark.exe 
+
+#Arquivos Objeto
+*.o
+*.obj
+
+# Bibliotecas compiladas
+*.a
+*.so
+*.dll
+*.dylib
+
+# Diretório de build (caso seja criado no futuro)
+build/
+
+# Arquivos temporários
+*.tmp
+
+# Arquivos de log
+*.log
