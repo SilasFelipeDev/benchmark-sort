@@ -1,36 +1,61 @@
 #include <stdio.h>
 #include "sorts.h"
 
+void imprimeVetor(int *vetor, int tamanho){
+    for (int i = 0; i < tamanho; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+}
+
 int main(void) 
 {
-    int n;
+    int n, opcao;
 
     printf("====================================\n"  );
     printf("     B E N C H M A R K  S O R T\n"       );
     printf("====================================\n\n");
 
-    printf("BUBBLE SORT\nESCOLHA O TAMANHO DO VETOR [INTEIRO]: ");
+    printf("Escolha um Algoritmo:\n");
+    printf("[1] Bubble Sort\n");
+    printf("[2] Selection Sort\n");
+    printf("Opcao: ");
+    scanf("%d", &opcao);
+
+    printf("\nDIGITE O TAMANHO DO VETOR [INTEIRO]: ");
     scanf("%d", &n);
 
     int vetor[n];
 
-    printf("DIGITE OS INDICES INTEIROS, FORA DE ORDEM\n");
+    printf("\nDIGITE OS INDICES INTEIROS, FORA DE ORDEM:\n");
     for (int i = 0; i < n; i++) {
+        printf("INDICE [%d]: ", i);
         scanf("%d", &vetor[i]);
     }
 
-    printf("SEU VETOR: ");
-    for (int j = 0; j < n; j++) {
-        printf("%d ", vetor[j]);
+    printf("\nVETOR ORIGINAL:\n");
+    imprimeVetor(vetor, n);
+
+    switch (opcao){
+        case 1:
+            printf("====================================\n");
+            printf("        B U B B L E  S O R T        \n");
+            printf("====================================\n");
+            bubbleSort(vetor, n);
+            break;
+        case 2:
+            printf("====================================\n");
+            printf("     S E L E C T I O N  S O R T     \n");
+            printf("====================================\n");
+            selectionSort(vetor, n);
+            break;
+        default:
+            printf("\nOpcao invalida.\n");
+            return 1;
     }
 
-    printf("\n\n");
-
-    printf("AGORA ORDENADO: ");
-    bubbleSort(vetor, n);
-    for (int k = 0; k < n; k++) {
-        printf("%d ", vetor[k]);
-    }
+    printf("\nVETOR ORDENADO:\n");
+    imprimeVetor(vetor, n);
 
     return 0;
 }
