@@ -1,14 +1,16 @@
 #include "sorts.h"
 
-void selectionSort(int *vetor, int tamanho){
+void selectionSort(int *vetor, int tamanho, Benchmark *bench){
     for (int i = 0; i < tamanho; i++){
         int menor = i;
         for (int j = i + 1; j < tamanho; j++){
+            bench->comparacoes++;
             if (vetor[j] < vetor[menor]){
                 menor = j;
             }
         }
         if (menor != i){
+            bench->trocas++;
             int aux      = vetor[i];
             vetor[i]     = vetor[menor];
             vetor[menor] = aux;

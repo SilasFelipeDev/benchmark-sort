@@ -1,11 +1,18 @@
 #include <stdio.h>
 #include "sorts.h"
+#include "benchmark.h"
 
 void imprimeVetor(int *vetor, int tamanho){
     for (int i = 0; i < tamanho; i++) {
         printf("%d ", vetor[i]);
     }
     printf("\n");
+}
+
+void imprimeBenchmark(Benchmark *bench){
+    printf("\nComparacoes: %ld\n", bench->comparacoes);
+    printf("Trocas: %ld\n", bench->trocas);
+    printf("Tempo: %lf segundos\n", bench->tempo_segundos);
 }
 
 int main(void) 
@@ -36,18 +43,24 @@ int main(void)
     printf("\nVETOR ORIGINAL:\n");
     imprimeVetor(vetor, n);
 
+    Benchmark bench;
+
     switch (opcao){
         case 1:
             printf("====================================\n");
             printf("        B U B B L E  S O R T        \n");
             printf("====================================\n");
-            bubbleSort(vetor, n);
+            benchmarkIniciar(&bench);     // zera contadores e marca o clock() inicial
+            bubbleSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
+            benchmarkFinalizar(&bench);   // calcula quanto tempo passou
             break;
         case 2:
             printf("====================================\n");
             printf("     S E L E C T I O N  S O R T     \n");
             printf("====================================\n");
-            selectionSort(vetor, n);
+            benchmarkIniciar(&bench);        // zera contadores e marca o clock() inicial
+            selectionSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
+            benchmarkFinalizar(&bench);      // calcula quanto tempo passou               
             break;
         default:
             printf("\nOpcao invalida.\n");
@@ -56,6 +69,8 @@ int main(void)
 
     printf("\nVETOR ORDENADO:\n");
     imprimeVetor(vetor, n);
+
+    imprimeBenchmark(&bench);
 
     return 0;
 }
