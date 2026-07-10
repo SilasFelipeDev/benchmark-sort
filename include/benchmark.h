@@ -4,8 +4,8 @@
 #include <time.h>
 
 typedef struct {
-    long comparacoes;
-    long trocas;
+    long long comparacoes;
+    long long trocas;
     clock_t inicio;
     double tempo_segundos;
 } Benchmark;
