@@ -26,6 +26,7 @@ int main(void)
     printf("Escolha um Algoritmo:\n");
     printf("[1] Bubble Sort\n");
     printf("[2] Selection Sort\n");
+    printf("[3] Insertion Sort\n");
     printf("Opcao: ");
     scanf("%d", &opcao);
 
@@ -61,6 +62,14 @@ int main(void)
             benchmarkIniciar(&bench);        // zera contadores e marca o clock() inicial
             selectionSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
             benchmarkFinalizar(&bench);      // calcula quanto tempo passou               
+            break;
+        case 3:
+            printf("====================================\n");
+            printf("     I N S E R T I O N  S O R T     \n");
+            printf("====================================\n");
+            benchmarkIniciar(&bench);        // zera contadores e marca o clock() inicial
+            insertionSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
+            benchmarkFinalizar(&bench);      // calcula quanto tempo passou
             break;
         default:
             printf("\nOpcao invalida.\n");
