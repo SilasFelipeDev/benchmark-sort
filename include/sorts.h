@@ -5,5 +5,6 @@
 
 void bubbleSort(int *vetor, int tamanho, Benchmark *bench);
 void selectionSort(int *vetor, int tamanho, Benchmark *bench);
+void insertionSort(int *vetor, int tamanho, Benchmark *bench);
 
 #endif
