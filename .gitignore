@@ -25,3 +25,6 @@ build/*
 
 # Arquivos de log
 *.log
+
+#VS Code
+.vscode/
