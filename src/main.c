@@ -67,6 +67,7 @@ int main(void)
     printf("[1] Bubble Sort\n");
     printf("[2] Selection Sort\n");
     printf("[3] Insertion Sort\n");
+    printf("[4] Merge Sort\n");
     printf("Opcao: ");
     scanf("%d", &opcaoAlgoritmo);
 
@@ -124,6 +125,12 @@ int main(void)
             insertionSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
             benchmarkFinalizar(&bench);      // calcula quanto tempo passou
             nomeAlgoritmo = "     I N S E R T I O N  S O R T";
+            break;
+        case 4:
+            benchmarkIniciar(&bench);
+            mergeSort(vetor, 0, n - 1, &bench);
+            benchmarkFinalizar(&bench);
+            nomeAlgoritmo = "     M E R G E  S O R T";
             break;
         default:
             printf("\nOpcao invalida.\n");
