@@ -68,6 +68,7 @@ int main(void)
     printf("[2] Selection Sort\n");
     printf("[3] Insertion Sort\n");
     printf("[4] Merge Sort\n");
+    printf("[5] Quick Sort\n");
     printf("Opcao: ");
     scanf("%d", &opcaoAlgoritmo);
 
@@ -130,7 +131,13 @@ int main(void)
             benchmarkIniciar(&bench);
             mergeSort(vetor, 0, n - 1, &bench);
             benchmarkFinalizar(&bench);
-            nomeAlgoritmo = "     M E R G E  S O R T";
+            nomeAlgoritmo = "         M E R G E  S O R T";
+            break;
+        case 5:
+            benchmarkIniciar(&bench);
+            quickSort(vetor, 0, n - 1, &bench);
+            benchmarkFinalizar(&bench);
+            nomeAlgoritmo = "         Q U I C K  S O R T";
             break;
         default:
             printf("\nOpcao invalida.\n");
