@@ -75,7 +75,7 @@ Após compilar, rode:
 
 - [ ] Shell Sort
 - [x] Merge Sort 
-- [ ] Quick Sort
+- [x] Quick Sort
 - [ ] Heap Sort 
 
 ### Não baseados em comparação
