@@ -6,7 +6,6 @@ static int particiona(int *vetor, int inicio, int fim, Benchmark *bench){
     int pivo = vetor[inicio + (fim - inicio) / 2];
 
     while (i <= j){
-        bench->comparacoes++;
         while (1){
             bench->comparacoes++;
             if (!(vetor[i] < pivo))
