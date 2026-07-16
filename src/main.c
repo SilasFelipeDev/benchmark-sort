@@ -52,104 +52,110 @@ void imprimeBenchmark(Benchmark *bench){
     formataString(trocas_str, trocas_formatado);
 
     printf("COMPARACOES: %s\n", comparacoes_formatado);
-    printf("TROCA: %s\n", trocas_formatado);
+    printf("TROCAS: %s\n", trocas_formatado);
     printf("TEMPO: %lf SEGUNDOS\n", bench->tempo_segundos);
 }
 
-int main(void) 
-{
-    int n, opcaoAlgoritmo, opcaoTipo;
+int main(void){
+    int n, opcaoAlgoritmo, opcaoTipo, continuar;
     srand(time(NULL));
 
-    imprimeCabecalho("     B E N C H M A R K  S O R T");
+    do{
+        imprimeCabecalho("     B E N C H M A R K  S O R T");
 
-    printf("Escolha um Algoritmo:\n");
-    printf("[1] Bubble Sort\n");
-    printf("[2] Selection Sort\n");
-    printf("[3] Insertion Sort\n");
-    printf("[4] Merge Sort\n");
-    printf("[5] Quick Sort\n");
-    printf("Opcao: ");
-    scanf("%d", &opcaoAlgoritmo);
+        printf("ESCOLHA UM ALGORITMO:\n");
+        printf("[1] Bubble Sort\n");
+        printf("[2] Selection Sort\n");
+        printf("[3] Insertion Sort\n");
+        printf("[4] Merge Sort\n");
+        printf("[5] Quick Sort\n");
+        printf("\n[0] Para Encerrar\n\n");
 
-    do {
-        printf("\nDIGITE O TAMANHO DO VETOR (ENTRE %d E 100 MIL): ", TAMANHO_MIN);
-        scanf("%d", &n);
+        do{ // VERIFICA ENTRADA DO TIPO DO ALGORITMO DE ORDENAÇÃO
+            opcaoAlgoritmo = lerInteiro("Opcao [0 a 5]: ");
+        } while (opcaoAlgoritmo < 0 || opcaoAlgoritmo > 5);
 
-    } while (n < TAMANHO_MIN || n > TAMANHO_MAX);
-
-    printf("\nEscolha o tipo de vetor:\n");
-    printf("[1] Aleatorio\n");
-    printf("[2] Ordenado\n");
-    printf("[3] Invertido\n");
-    printf("Opcao: ");
-    scanf("%d", &opcaoTipo);
-
-    int *vetor = gerarVetor(n);
-
-    switch (opcaoTipo){
-        case 1:
-            vetorAleatorio(vetor, n);
+        if (opcaoAlgoritmo == 0)
             break;
-        case 2:
-            vetorOrdenado(vetor, n);
-            break;
-        case 3:
-            vetorInvertido(vetor, n);
-            break;
-        default: 
-            printf("\nOpcao invalida.\n");
-            return 1;
-    }
-    imprimeCabecalho("     V E T O R  O R I G I N A L");
-    imprimeVetor(vetor, n);
 
-    Benchmark bench;
-    
-    const char *nomeAlgoritmo;
+        do { // VERIFICA ENTRADA DO TAMANHO DO VETOR
+            n = lerInteiro("\nDIGITE O TAMANHO DO VETOR (ENTRE 2 E 100 MIL): ");
+        } while (n < TAMANHO_MIN || n > TAMANHO_MAX);
 
-    switch (opcaoAlgoritmo){
-        case 1:
-            benchmarkIniciar(&bench);     // zera contadores e marca o clock() inicial
-            bubbleSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
-            benchmarkFinalizar(&bench);   // calcula quanto tempo passou
-            nomeAlgoritmo = "        B U B B L E  S O R T";
-            break;
-        case 2:
-            benchmarkIniciar(&bench);        // zera contadores e marca o clock() inicial
-            selectionSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
-            benchmarkFinalizar(&bench);      // calcula quanto tempo passou               
-            nomeAlgoritmo = "     S E L E C T I O N  S O R T";
-            break;
-        case 3:
-            benchmarkIniciar(&bench);        // zera contadores e marca o clock() inicial
-            insertionSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
-            benchmarkFinalizar(&bench);      // calcula quanto tempo passou
-            nomeAlgoritmo = "     I N S E R T I O N  S O R T";
-            break;
-        case 4:
-            benchmarkIniciar(&bench);
-            mergeSort(vetor, 0, n - 1, &bench);
-            benchmarkFinalizar(&bench);
-            nomeAlgoritmo = "         M E R G E  S O R T";
-            break;
-        case 5:
-            benchmarkIniciar(&bench);
-            quickSort(vetor, 0, n - 1, &bench);
-            benchmarkFinalizar(&bench);
-            nomeAlgoritmo = "         Q U I C K  S O R T";
-            break;
-        default:
-            printf("\nOpcao invalida.\n");
-            return 1;
-    }
+        printf("\nEscolha o tipo de vetor:\n");
+        printf("[1] Aleatorio\n");
+        printf("[2] Ordenado\n");
+        printf("[3] Invertido\n");
 
-    imprimeCabecalho("     V E T O R  O R D E N A D O");
-    imprimeVetor(vetor, n);
+        do { // VERIFICA ENTRADA DO TIPO DE VETOR
+            opcaoTipo = lerInteiro("Opcao [1 a 3]: ");
+        } while (opcaoTipo < 1 || opcaoTipo > 3);
 
-    imprimeCabecalho(nomeAlgoritmo);
-    imprimeBenchmark(&bench);
+        int *vetor = gerarVetor(n);
 
-    free(vetor);
+        switch (opcaoTipo){
+            case 1:
+                vetorAleatorio(vetor, n);
+                break;
+            case 2:
+                vetorOrdenado(vetor, n);
+                break;
+            case 3:
+                vetorInvertido(vetor, n);
+                break;
+        }
+        imprimeCabecalho("     V E T O R  O R I G I N A L");
+        imprimeVetor(vetor, n);
+        printf("ORDENANDO ... AGUARDE ...\n");
+
+        Benchmark bench;
+        
+        const char *nomeAlgoritmo;
+
+        switch (opcaoAlgoritmo){
+            case 1:
+                benchmarkIniciar(&bench);     // zera contadores e marca o clock() inicial
+                bubbleSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
+                benchmarkFinalizar(&bench);   // calcula quanto tempo passou
+                nomeAlgoritmo = "        B U B B L E  S O R T";
+                break;
+            case 2:
+                benchmarkIniciar(&bench);        // zera contadores e marca o clock() inicial
+                selectionSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
+                benchmarkFinalizar(&bench);      // calcula quanto tempo passou               
+                nomeAlgoritmo = "     S E L E C T I O N  S O R T";
+                break;
+            case 3:
+                benchmarkIniciar(&bench);        // zera contadores e marca o clock() inicial
+                insertionSort(vetor, n, &bench); // ordena e vai incrementando bench->comparacoes / bench->trocas
+                benchmarkFinalizar(&bench);      // calcula quanto tempo passou
+                nomeAlgoritmo = "     I N S E R T I O N  S O R T";
+                break;
+            case 4:
+                benchmarkIniciar(&bench);
+                mergeSort(vetor, 0, n - 1, &bench);
+                benchmarkFinalizar(&bench);
+                nomeAlgoritmo = "         M E R G E  S O R T";
+                break;
+            case 5:
+                benchmarkIniciar(&bench);
+                quickSort(vetor, 0, n - 1, &bench);
+                benchmarkFinalizar(&bench);
+                nomeAlgoritmo = "         Q U I C K  S O R T";
+                break;
+        }
+
+        imprimeCabecalho("     V E T O R  O R D E N A D O");
+        imprimeVetor(vetor, n);
+
+        imprimeCabecalho(nomeAlgoritmo);
+        imprimeBenchmark(&bench);
+
+        free(vetor);
+        printf("\n\n");
+        continuar = lerInteiro("[1] Novamente / [0] Encerrar: ");
+        printf("\n");
+    } while (continuar);
+
     return 0;
 }
