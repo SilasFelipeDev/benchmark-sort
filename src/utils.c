@@ -65,3 +65,14 @@ void formataString(const char *origem, char *destino){
         }
     }
 }
+
+int lerInteiro(const char *mensagem){
+    int valor;
+    printf("%s", mensagem);
+
+    while (scanf("%d", &valor) != 1){
+        while (getchar() != '\n');
+        printf("ENTRADA INVALIDA. DIGITE UM NUMERO INTEIRO: ");
+    }
+    return valor;
+}
