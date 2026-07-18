@@ -12,6 +12,26 @@ O objetivo deste repositório não é servir como portfólio, mas como uma bibli
 - Estudar complexidade de tempo e espaço.
 - Organizar o código em múltiplos arquivos seguindo boas práticas.
 
+## Como baixar (sem precisar compilar)
+
+Se você só quer rodar o programa, sem instalar GCC, Make ou qualquer ambiente de desenvolvimento, baixe o executável pronto na página de [Releases](https://github.com/SilasFelipeDev/benchmark-sort/releases).
+
+1. Baixe o arquivo correspondente ao seu sistema operacional:
+   - **Windows:** `benchmark-sort-windows.exe`
+   - **Linux:** `benchmark-sort-linux`
+2. **Windows:** dê dois cliques no arquivo para executar ("executar assim mesmo" caso o microsoft defender bloqueie), ou execute via terminal (navegue até o diretório do arquivo):
+```bash
+.\benchmark-sort-windows.exe
+```
+    
+3. **Linux:** abra um terminal na pasta onde baixou o arquivo e rode:
+```bash
+   chmod +x benchmark-sort-linux
+   ./benchmark-sort-linux
+```
+
+> Quer entender o código, modificar algo ou compilar você mesmo? Veja a seção [Como executar (desenvolvimento)](#como-executar) abaixo.
+
 ## Como executar
 
 ### Pré-requisitos
@@ -112,14 +132,17 @@ O IntelliSense do VS Code (responsável por sublinhar erros em tempo real) não 
 
 > **Nota:** a pasta `.vscode/` está no `.gitignore` propositalmente, porque esse arquivo de configuração costuma conter caminhos específicos da sua máquina (como a localização do compilador). Por isso cada pessoa que for desenvolver no projeto precisa gerar a sua própria configuração - ela não vem pronta no repositório.
 
+## Funcionalidades implementadas
+
+- Geração de diferentes tipos de vetores (aleatório, ordenado, invertido)
+- Estatísticas de execução (comparações, trocas e tempo)
+- Interface em terminal com menu interativo
+
 ## Futuras funcionalidades
 
-- Benchmark automático 
-- Geração de diferentes tipos de vetores 
-- Estatísticas de execução 
-- Comparação entre algoritmos 
-- Interface em terminal 
-- Documentação individual de cada algoritmo
+- Comparação entre algoritmos (rodar o mesmo vetor em dois algoritmos diferentes e comparar os resultados lado a lado)
+- Exportar relatório de benchmark para arquivo `.txt`
+- Documentação individual de cada algoritmo (pasta `docs/`, explicando a lógica e complexidade de cada um de forma didática)
 
 ## Licença 
 

@@ -39,8 +39,8 @@ void imprimeCabecalho(const char *titulo){
     printf("====================================\n\n");
 }
 
-void numberForString(long long tamanho, char* destino, size_t tamanho_destino){
-    snprintf(destino, tamanho_destino, "%lld", tamanho);
+void numberForString(long long numero, char* destino, size_t tamanho_destino){
+    snprintf(destino, tamanho_destino, "%lld", numero);
 }
 
 void formataString(const char *origem, char *destino){
