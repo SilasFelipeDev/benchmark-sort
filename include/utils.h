@@ -12,7 +12,7 @@ int* gerarVetor(int tamanho);
 // Preenche o vetor com "tamanho" valores inteiros aleatórios. 
 void vetorAleatorio(int *vetor, int tamanho);
 
-// Preenche o vetor com "tamnho" valores inteiros em ordem crescente.
+// Preenche o vetor com "tamanho" valores inteiros em ordem crescente.
 void vetorOrdenado(int *vetor, int tamanho);
 
 // Preenche o vetor com "tamanho" valores inteiros em ordem decrescente.
